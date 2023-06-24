@@ -1,22 +1,29 @@
-require 'set'
 
 class Match 
-    Measure = Data.define(:odds, :outcome,:match) 
-    Outcome = Struct.new(:won, :lost)
-    def initialize(a,b)
+    Outcome = Struct.new(:winner, :loser, :odds)
+    def initialize(a,b, odds)
         @team_a = a 
         @team_b = b 
-        @teams = Set[a,b]
-
+        @won = Outcome[@team_a,@team_b, odds[0]]
+        @lost = Outcome[@team_b,@team_a, odds[1]]
+        @draw = Outcome[nil,nil, odds[2]]
     end
-    def outcomes
-        [Outcome[a,b], Outcome[b,a] ,Outcome[@teams,@teams]]
+    
+    def outcome(won:) 
+        case won 
+        when @team_a then @won 
+        when @team_b then @lost 
+        when nil then @draw
+        end
     end
-
-    def odds 
 end
 
 class Team
-end
+    attr :name 
+    
+    def initialize name 
+        @name = name
+    end
 
-class 
+    
+end

@@ -16,6 +16,8 @@ Estrela = {
         device: ?d,
         languageId: 23}
     },
+    referer: ->n{"https://estrelabet.com/ptb/bet/search/#{n}"},
+    search_query2: ->n{"{\"requestBody\":{\"name\":\"#{n}\",\"bragiUrl\":\"https://bragi.sportingtech.com/\"},\"device\":\"d\",\"languageId\":23}"},
     fixture_query: ->n{%({"requestBody":{"fixtureIds":["#{n}"],"bragiUrl":"https://bragi.sportingtech.com/"},"device":"d","languageId":23})},
     cookies: ->(n){"_fbp=fb.1.1687558884740.53973423; _ga_JNY80EMZ8E=GS1.1.1687558885.12.0.1687558885.60.0.0; #{n}"}
 
@@ -27,10 +29,10 @@ def Estrela.add_headers request
     request["Cache-Control"] = 'no-cache'
     request["Connection"] = 'keep-alive'
     request["Content-Type"] = 'application/json'
-    request["Cookie"] = '_fbp=fb.1.1687558884740.53973423; _ga_JNY80EMZ8E=GS1.1.1687558885.12.0.1687558885.60.0.0; __nxquid=xFPdUxcKyJcRPXohKGV8Ruo7HiTRWA==0014'
+    #request["Cookie"] = '_fbp=fb.1.1687558884740.53973423; _ga_JNY80EMZ8E=GS1.1.1687558885.12.0.1687558885.60.0.0; __nxquid=xFPdUxcKyJcRPXohKGV8Ruo7HiTRWA==0014'
     request["Origin"] = 'https://estrelabet.com'
     request["Pragma"] = 'no-cache'
-    request["Referer"] = 'https://estrelabet.com/ptb/bet/search/cruzeiro'
+    #request["Referer"] = 'https://estrelabet.com/ptb/bet/search/cruzeiro'
     request["Sec-Fetch-Dest"] = 'empty'
     request["Sec-Fetch-Mode"] = 'cors'
     request["Sec-Fetch-Site"] = 'same-origin'
