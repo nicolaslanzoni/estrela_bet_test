@@ -56,12 +56,12 @@ class Crawler
     end
     
     def name_search  name
-        get Estrela.route(:get_search)[name], query: self.search_query
+        get Estrela.route(:get_search)[name], query: Estrela[:search_query2][name]
 
         ck = agent.cookie_jar.jar.dig *%w[estrelabet.com /  __nxquid]
         t ||= 5 
         return post Estrela.route(:name_search)[name], 
-                    query: self.search_query, 
+                    query: Estrela[:search_query2][name], 
                     header: { 
                         'Referer' => Estrela[:referer][name],
                         'Cookie' => Estrela[:cookies][ck]

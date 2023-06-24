@@ -2,11 +2,11 @@ Estrela = {
     host: 'https://estrelabet.com',
     routes: {
         set_cookie: '/api-v2/left-menu/d/23/estrelabet/eyJyZXF1ZXN0Qm9keSI6e319',
-            name_search: ->(n){'/api-v2/name-search/d/23/estrelabet/' << n},
-            detail_api: ->(n){'/api-v2/fixture-detail/d/23/estrelabet/' << n},
-            detail: ->(n){'/ptb/bet/fixture-detail/' << n},
-            manifest:  '/manifest.webmanifest',
-            get_search: ->x{"/ptb/bet/search/#{x}"}
+        name_search: ->(n){'/api-v2/name-search/d/23/estrelabet/' << n},
+        detail_api: ->(n){'/api-v2/fixture-detail/d/23/estrelabet/' << n},
+        detail: ->(n){'/ptb/bet/fixture-detail/' << n},
+        manifest:  '/manifest.webmanifest',
+        get_search: ->x{"/ptb/bet/search/#{x}"}
     },
     search_query: ->(n){ 
         {requestBody: { 
