@@ -74,6 +74,16 @@
     };
     version = "3.2023.0218.1";
   };
+  minitest = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1kg9wh7jlc9zsr3hkhpzkbn0ynf4np5ap9m2d8xdrb8shy0y6pmb";
+      type = "gem";
+    };
+    version = "5.18.1";
+  };
   net-http-digest_auth = {
     groups = ["default"];
     platforms = [];
