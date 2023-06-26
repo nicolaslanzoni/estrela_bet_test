@@ -23,22 +23,16 @@ class Crawler
     end
 
     def post route, query: nil, header: {}
-        #return @agent.post "#{@host}#{route}", query, header if route.is_a? String
-        
         request = Net::HTTP::Post.new(URI(route))
         request = Estrela.add_headers request
         header.keys.each { request[_1] = header[_1]}
-        request.body = query#"{\"requestBody\":{\"name\":\"cruzeiro\",\"bragiUrl\":\"https://bragi.sportingtech.com/\"},\"device\":\"d\",\"languageId\":23}"
+        request.body = query
         @http.request(request)
-        #@agent.post  route, query , header
-    
-    
     end
 
     def get  route, query: nil, header: {}
-        #return @agent.get "#{@host}#{route}", query, header if route.is_a? String
         
-        @agent.get  route#, query, header
+        @agent.get  route
     end
 
     
@@ -52,7 +46,9 @@ class Crawler
         from_cookie_string(_cookies) {@agent.cookie_jar << _1[0]}
         #p.call post(Estrela.route(:detail_api)['48442316'], query: %({"requestBody":{"fixtureIds":[48442310],"bragiUrl":"https://bragi.sportingtech.com/"},"device":"d","languageId":23})) 
 
-
+    rescue Mechanize::ResponseCodeError => e 
+        puts "Error while trying to get needed cookies. The page's probably out now, try sometime later. "
+        raise e
     end
     
     def name_search  name
@@ -66,12 +62,11 @@ class Crawler
                         'Referer' => Estrela[:referer][name],
                         'Cookie' => Estrela[:cookies][ck]
                     }
-        print ' ✓ '
-    rescue => e
-        print ' ✗ '
-
+    rescue Mechanize::ResponseCodeError => e
         retry if 0<=(t-=1)
-        binding.irb
+        
+        puts "Error while trying to do the search. The endpoint may be  out now, try sometime later. "
+
         raise e
     end
     
