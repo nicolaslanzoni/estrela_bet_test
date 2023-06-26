@@ -13,7 +13,7 @@ def search_for name
 end
 
 
-team_a, team_b, match = search_for "cruzeiro"
+team_a, team_b, match = search_for "Cruzeiro"
 
 
 puts <<-MSG
